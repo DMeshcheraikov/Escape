@@ -1,0 +1,434 @@
+@import "./_default"
+@import "./_options"
+
+
+// ============================
+// MAIN CODE START
+// ============================
+
+.container
+	width: 100%
+	max-width: nth($mediaBp, 1)
+	margin:
+		left: auto
+		right: auto
+	padding:
+		left: 10px
+		right: 10px
+
+
+img
+	max-width: 100%
+
+p
+	margin-top: 36px
+
+.nav
+	&-list
+		@include grid2 ($c: 'repeat(5, auto)', $g: 30px)
+		&__link
+			&:hover
+				text-decoration: underline
+	&-toggle
+		@include flex($jc: center, $ai: center)
+		display: none
+		width: 30px
+		height: 30px
+		border: 1px solid #fff
+			radius: 6px
+		color: #fff
+		&__close
+			display: none
+		&_active &__close
+			display: inline-block
+		&_active &__open
+			display: none
+
+.header
+	background: $headerC
+	padding: 44px 0 42px
+	&__name
+		display: inline-block
+	&-menu
+		&-grid
+			@include grid2 ($c: 'repeat(2, auto)', $g: 10px, $jc: space-between, $ai: center)
+	&__logo
+		@include grid2 ($c: 'repeat(2, auto)', $g: 7px)
+	&-preview
+		padding: 147px 0 83px
+		&__title
+			margin-top: 40px
+		&__buttons
+			margin-top: 73px
+			text-align: center
+.services
+	&__col:nth-child(2n)
+			background: $services-identyC
+	&-grid
+		padding: 95px 0
+		@include grid2 ($c: 'repeat(2, auto)', $ai: center, $jc: space-evenly)
+		&__col
+			max-width: 565px
+		&__title
+			text-align: left
+		&-two
+			align-items: center
+			&_col
+				max-width: 537px
+
+	&-skills-grid
+		padding: 100px 0 92px
+		@include grid2 ($c: 'repeat(2, minmax(auto, 380px))', $g: 43px 15px, $jc: space-around)
+		&__col
+			@include flex ()
+		&__title
+			margin-top: 3px
+		&__text
+			margin-top: 7px
+		&__icon
+			@include flex ($jc: center, $ai: center)
+			width: 72px
+			height: 72px
+			background: rgb(34, 34, 34)
+			border-radius: 50%
+			margin-right: 20px
+	&-clients
+		padding: 95px 0
+		&__text
+			margin-top: 5px
+		&-contant
+			margin-top: 50px
+		&-grid
+			margin-top: 40px
+			@include grid2 ($c: 'repeat(2, auto)', $ai: center, $jc: space-between)
+			&__circl
+				height: 220px
+				width: 220px
+				background-color: #111111
+				border-radius: 50%
+				overflow: hidden
+				display: flex
+				justify-content: center
+				align-items: center
+			&__content
+				&-text
+					position: relative
+					filter: drop-shadow(0px 0px 1px #ededed)
+			&__item
+			&__text 
+				margin: 0 32px
+				padding: 33px 75px
+				background-color: #fff
+				box-shadow: 0 0 1px #ededed
+				&:before
+					content: ""
+					position: absolute
+					clip-path: polygon(100% 1%, 100% 100%, 0% 50%)
+					background-color: #fff
+					width: 22px
+					height: 22px
+					left: 11px
+					top: calc(50% - 11px)
+					// top: calc(50% - 22px)
+					// border-color: transparent #fff transparent transparent
+					// border-style: solid
+					// border-width: 22px
+				&_right:before
+					left: inherit
+					right: 11px
+					transform: scaleX(-1)
+			
+	&-logo-grid
+		@include grid2 ($c: 'repeat(4, auto)', $ai: center, $g: 40px, $jc: center)
+		padding: 60px 0 56px
+
+.team
+	background: $teamC
+	padding: 94px 0
+	&__title		
+
+	&__text
+		margin-top: 9px
+	&-grid		
+		margin-top: 76px
+		// @include grid2($c: 'repeat(auto-fit, minmax(250px, 1fr))', $jc: center, $g: 45px, $ji: center)
+		@include flex ($jc: center, $fw: wrap)
+		text-align: center
+		&__col
+			padding: 0 22px 22px
+		&__img
+			border-radius: 50%
+			height: 235px
+			width: 235px
+			border: 7px solid #fff
+			overflow: hidden
+
+		&__name
+			margin-top: 17px
+			display: grid
+			grid-template-columns: repeat(1, auto)
+			grid-gap: 7px
+		&-social
+			@include flex ($jc: center)
+			&__item
+				@include flex ($ai: center, $jc: center)
+				margin: 0 5px
+				border-radius: 50%
+				height: 39px
+				width: 39px
+				border: 3px solid #fff
+	&__text-end
+		max-width: 630px
+		margin: 23px auto 0
+
+.contact
+	background: $contactC
+	padding: 99px 0
+	&-grid
+		@include grid2($c: 2, $g: 27px, $jc: space-between)
+		&__title
+			text-align: left
+			line-height: .83
+		&__text
+			text-align: left
+			margin-top: 27px
+		&-info
+			@include grid2($c: 2, $g: 33px)
+			margin-top: 47px
+			&__col
+				@include grid2($c: '30px auto', $g: 11px, $ji: center)
+				font-size: 23px
+				max-width: fit-content
+				&:hover
+					filter: invert(1)
+					transition: .3
+			&__text
+				font-size: 18px
+				min-width: max-content
+
+	&-form
+		@include grid2 ($c: 1, $g: 20px)
+		margin: auto
+		user-select: none
+		&__item
+			background-color: white
+			border-color: rgb(204, 204, 204)
+			position: relative
+			border-radius: 4px
+			padding: 12px 21px 14px
+			&:nth-child(2)
+				margin-top: 7px
+		&__message
+			resize: none
+			height: 200px
+		&__button
+			margin-top: 20px
+			cursor: pointer
+			background-color: transparent
+
+.footer
+	background: $footerC
+	&__text
+		border-top: 1px solid #87a0d2
+		padding: 29px
+
+
+// ============================
+// MAIN CODE END
+// ============================
+
+@for $i from 1 to length($mediaBp)
+	@media (max-width: nth($mediaBp, $i))
+		.container
+			max-width: nth($mediaBp, $i + 1)
+
+// // ============================
+// // MEDIA QUARIES
+// // ============================
+@media (max-width: nth($mediaBp, 1))
+
+	.services-clients-grid__text
+		padding: 10px
+		text-align: center
+
+	.text_style1
+		font-size: 20px
+		text-align: center
+
+@media (max-width: nth($mediaBp, 2))
+
+	.display-none_767
+		display: none
+
+	.title_h2_style2,
+	.text_style4c
+
+	.services
+		&-grid
+			grid-template-columns: repeat(1, 1fr)
+			justify-items: center
+			&__title,
+			&__text
+				text-align: center
+
+	.contact
+		&-grid
+			grid-template-columns: repeat(1, 1fr)
+			max-width: 440px
+			margin: auto
+			&__title,
+			&__text
+				text-align: center
+	.services
+		&-skills-grid
+			grid-template-columns: repeat(1, 1fr)
+			&__col
+				flex-wrap: wrap
+				justify-content: center
+			&__text
+				max-width: 350px
+
+	.services-clients-grid__circl,
+	.team-grid__img
+		height: 150px
+		width: 150px
+
+	.team-grid__img
+		border: 4px solid #fff
+		
+@media (max-width: nth($mediaBp, 3)) 
+
+	.title_h4
+		text-align: center
+
+	.services
+		&-clients
+			&-grid
+				grid-template-columns: repeat(1, 1fr)
+				justify-items: center
+
+			&-logo-grid
+				grid-gap: 5px
+
+	.padding_block
+		padding: 30px 0
+
+	.title_h2
+		text-align: center
+
+	.header-menu
+		z-index: 10
+		position: fixed
+		top: 0
+		left: 0
+		right: 0
+		background-color: #333
+		padding: 10px 0
+		opacity: .9
+
+	.nav
+		position: fixed
+		z-index: -1
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		background: #000
+		padding: 80px 0 40px
+		overflow: scroll
+			x: hidden
+			y: auto
+		visibility: hidden
+		opacity: 0
+		transition: .3s
+		&_active
+			opacity: 1
+			visibility: visible
+		&_active &-list
+			transform: translate(0, 0)
+		&-list
+			@include flex
+			flex-direction: column
+			align-items: center
+			transition: .3s
+			transform: translate(0, 30px)
+			&__link
+				display: block
+				font-size: 20px
+				line-height: 1.8
+			li + li
+				margin: 0
+		&-toggle
+			display: flex
+
+	.services
+		&-skills-grid
+			&__col
+				display: grid
+				justify-items: center
+				grid-gap: 15px
+			&__icon
+				margin-right: auto
+		&-clients-grid
+			&__content-circl
+				grid-row-end: -1
+			&__text
+				&:before
+					left: calc(50% - 11px)
+					top: -11px
+					transform: rotate(90deg)
+
+	.contact-grid__text,
+		padding: 0 25px
+
+	.footer__text 
+		padding: 15px 0
+
+	.title
+		&_h1
+			font-size: 32px
+		&_h2
+			font-size: 28px
+		&_h3
+			font-size: 22px
+		&_h4
+			font-size: 20px
+		&_h5
+			font-size: 18px
+
+	.text_style
+		font-size: 14px
+		text-align: center
+		
+	.button_style1
+		font-size: 18px
+		padding: 10px 25px
+
+
+@media (max-width: nth($mediaBp, 4)) 
+	
+	.services
+		&-logo-grid
+			grid-template-columns: repeat(2, 1fr)
+			grid-gap: 15px
+			justify-items: center
+			&__col
+				max-width: 70%
+
+	.margin_block
+		margin: 30px 0
+
+	.contact-grid-info
+		grid-template-columns: repeat(1, 1fr)
+		grid-gap: 18px
+		max-width: fit-content
+		margin:
+			bottom: 0
+			left: auto
+			right: auto
+
+	.contact-grid
+		max-width: 310px
+
+	.text_style5b
+		font-size: 14px

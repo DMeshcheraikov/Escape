@@ -1,0 +1,198 @@
+// ============================
+// MEDIA
+// ============================
+
+$mediaBp: (960px, 767px, 640px, 480px)
+
+// ============================
+// FUNCTION
+// ============================
+
+@function col-width($n)
+	@if $n == auto
+		@return auto
+	@else
+		@return calc(100% / #{$n})
+
+// ============================
+// MIXINS
+// ============================
+
+@mixin flex ($d: flex, $jc: flex-start, $fw: nowrap, $ai: stretch, $fd: row)
+	display: $d
+	flex-flow: $fd $fw
+	justify-content: $jc
+	align-items: $ai
+
+@mixin grid ($s: 5px, $c: auto, $fwg: nowrap, $jcg: flex-start, $aig: stretch, $fdg: row)
+	&-grid
+		margin: -$s
+		@include flex($fw: $fwg, $jc: $jcg, $ai: $aig, $fd: $fdg)
+		&__col
+			padding: $s
+			max-width: col-width($c)
+
+
+@mixin grid2 ($d: grid, $c: 1, $r: auto, $g: 15px, $ji: stretch, $ai: stretch, $jc: start, $ac: start)
+	// d - display             | отображение в потоке                   | grid
+	// c - columns             | количество колонок                     | repeat(1, 1fr)
+	// r - rows                | параметр линий                         | auto
+	// g - gap                 | отступы между ячейками                 | 15px
+	// ji - justify-items      | выравнивание контента по горизонтали   | stretch
+	// ai - align-items        | выравнивание контента по вертикали     | stretch
+	// jc - justify-content    | выравнивание ячеек по горизонтали      | start
+	// ac - align-content      | выравнивание ячеек по вертикали        | start
+
+	// align-self и align-items - устанавливает свойство align-self для всех дочерних элементов сетки. 
+	// stretch
+	// center 
+	// start
+	// end
+	// Это означает, что вы можете установить свойство индивидуально, используя align-self по элементу сетки.
+	// place-items: end center - Это свойство является сокращением для justify-items и align-items
+	// place-content: center end - Это свойство является сокращением для justify-content и align-content.
+	// Свойство justify-content выравнивает контент грид контейнера плоностью вдоль главной оси.
+
+	display: $d
+
+	// если $c == number, то будет выстроенное указанное количество колонок с равным размером | 3 => repeat(3, 1fr)
+	// если $c == list, подразумевается использование минимальной и максимальной ширины колонки | auto-fill 200px 1fr => repeat(auto-fill, 200px, 1fr)
+	//      1. количество повторений или auto-fill // $c: auto-fill 200px 1fr
+	//      2. минимальная ширина
+	//      3. максимальная ширина
+	// если $c == string, то будет подставлено указанное значение без кавычек | '1fr 200px 1fr' => 1fr 200px 1fr
+	// grid-template-columns: repeat(auto-fit, minmax(225px, auto)) для колонки	grid-column: auto / span 1
+	// grid-auto-flow: dense
+
+	@if (type-of($c) == number)
+		grid-template-columns: repeat($c, 1fr)
+	@else if (type-of($c) == list)
+		grid-template-columns: repeat(nth($c, 1), minmax(nth($c, 2), nth($c, 3)))
+	@else if (type-of($c) == string)
+		grid-template-columns: unquote($c)
+
+	grid-template-rows: $r
+	grid-gap: $g
+	justify-items: $ji
+	align-items: $ai
+	justify-content: $jc
+	align-content: $ac
+
+
+
+// .container > div > img 
+// width: 100%
+// height: 100%
+// object-fit: cover
+// .container
+// display: grid
+// grid-gap: 5px
+// grid-template-columns: repeat(auto-fit, minmax(100px, 1fr))
+// grid-template-rows: repeat(2, 100px)
+			// display: grid
+			// grid-gap: 5px
+			// grid-template-columns: repeat(auto-fit, minmax(39px, 1fr))
+			// grid-template-rows: repeat(1, 1fr)
+			// justify-items: center
+
+
+
+// @mixin button($bc: white, $c: white, $hc: $bc, $hbc: $c, $tt: uppercase, $ff: $ff1, $fs: 22px, $p: 27px 30px, $lh: 1.227, $bs: $bc)
+// 	display: inline-flex
+// 	font-family: $ff
+// 	margin: auto
+// 	font-size: $fs
+// 	line-height: $lh
+// 	text-transform: $tt
+// 	border-radius: 10px	
+// 	padding: $p
+// 	background-color: $bc
+// 	color: $c
+// 	&:hover
+// 		text-decoration: none
+// 		box-shadow: inset 0 0 0 3px $bs
+// 		background-color: $hbc
+// 		color: $hc
+	
+.button
+	&_style1
+		display: inline-flex
+		font-size: 23px
+		font-family: $ff1
+		color: rgb(255, 255, 255)
+		box-shadow: inset 0 0 0 2px #ffffff, inset 0 0 0 3px #dbdbdb
+		text-transform: capitalize
+		user-select: none
+		padding: 16px 68px
+		cursor: pointer
+		border-radius: 4px
+		&:hover
+			text-decoration: none
+			box-shadow: inset 0 0 0 0 #fff
+			background-color: rgb(255, 255, 255)
+			color: rgb(34, 34, 34)
+			transition: .3
+
+@mixin title ($fs: 58px, $ff: $ff2, $c: rgb(255, 255, 255), $tt: capitalize, $ta: center)
+	font-size: $fs	
+	font-family: $ff		
+	color: $c
+	text-transform: $tt
+	text-align: $ta
+	line-height: 1
+	span
+		font-family: $ff1
+		
+.title				
+	&_h1
+		@include title ($fs: 64px, $ff: $ff1, $tt: uppercase)
+	&_h2
+		&_style1
+			@include title ()
+		&_style2
+			@include title ($c: rgb(34, 34, 34))
+	&_h3
+		&_style1
+			@include title ($fs: 30px, $tt: inherit)
+	&_h4
+		&_style1
+			@include title ($fs: 25px, $ff: $ff4)
+			letter-spacing: 2px
+	&_h4
+		&_style2
+			@include title ($fs: 22px, $ff: $ff3, $c: rgb(34, 34, 34), $ta: left)
+	&_h5
+		&_style1
+			@include title ($fs: 18px, $ff: $ff1)
+
+			
+@mixin text ($fs: 18px, $ff: $ff0, $c: rgb(255, 255, 255), $ta: center, $lh: 1.2)
+	font-size: $fs	
+	font-family: $ff		
+	color: $c
+	text-align: $ta
+	line-height: $lh
+
+.text
+	&_menu
+		@include text ($fs: 18px, $ff: $ff3)
+	&_style1
+		@include text ($fs: 25px, $c: rgb(119, 119, 119), $lh: 1.4, $ta: left)
+	&_style2
+		@include text ($fs: 21px, $c: rgb(119, 119, 119))
+	&_style3a
+		@include text ($fs: 20px, $c: rgb(118, 144, 197), $lh: 1.8)
+		&:hover
+			text-decoration: underline
+	&_style3b
+		@include text ($fs: 19px, $c: rgb(235, 235, 235), $lh: 1.55)
+	&_style4a
+		@include text ($fs: 18px, $c: rgb(187, 187, 187), $ff: $ff3)
+	&_style4b
+		@include text ($fs: 17px, $lh: 1.52)
+	&_style4c
+		@include text ($fs: 17px, $c: rgb(119, 119, 119), $lh: 1.45, $ta: left)
+	&_style5a
+		@include text ($fs: 16px)
+	&_style5b
+		@include text ($fs: 15px, $ff: $ff3, $lh: 1.375)

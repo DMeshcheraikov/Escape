@@ -1,0 +1,137 @@
+// ============================
+// RESETS
+// ============================
+table, thead, tbody, tfoot, tr, th, td
+	margin: 0
+	padding: 0
+	border: none
+	border-collapse: inherit
+	border-spacing: 0
+	border-color: inherit
+	vertical-align: inherit
+	font-weight: inherit
+	-webkit-border-horizontal-spacing: 0
+	-webkit-border-vertical-spacing: 0
+
+*, *:before, *:after
+	margin: 0
+	padding: 0
+
+input
+	// border-radius: 0 !important
+	box-shadow: none !important
+	border: none
+	width: 100%
+	font-family: inherit
+	font-size: inherit
+	&::placeholder
+		color: #bbb
+
+textarea
+	border: none
+	width: 100%
+	font-family: inherit
+	font-size: inherit
+	&::placeholder
+		color: #bbb
+
+ul, ol
+	list-style-type: none
+
+a
+	text-decoration: none
+	cursor: pointer
+	&:hover
+		text-decoration: none
+
+
+
+input:active, 
+input:focus,
+label:focus,
+textarea:focus,
+select:focus,
+option:focus,
+button:focus,
+a:focus
+	outline: none
+
+button
+	border: none
+
+*, *:before, *:after, input, textarea, button, select
+	box-sizing: border-box
+
+// ============================
+// FONTS
+// ============================
+
+
+@font-face
+	font-family: 'BrandonGrotesque-Regular'
+	src: url('../fonts/BrandonGrotesque-Regular.woff') format('woff')
+	font-weight: normal
+	font-style: normal
+
+@font-face
+	font-family: 'Cubano-Regular'
+	src: url('../fonts/Cubano-Regular.otf') format('opentype')
+	font-weight: normal
+	font-style: normal
+
+@font-face
+	font-family: 'BrandonGrotesque-Medium'
+	src: url('../fonts/BrandonGrotesque-Medium.otf') format('opentype')
+	font-weight: normal
+	font-style: normal
+
+@font-face
+	font-family: 'BrandonGrotesque-Light'
+	src: url('../fonts/BrandonGrotesque-Light.otf') format('opentype')
+	font-weight: normal
+	font-style: normal
+
+@font-face
+	font-family: 'BrandonGrotesque-Bold'
+	src: url('../fonts/BrandonGrotesque-Bold.otf') format('opentype')
+	font-weight: normal
+	font-style: normal
+
+
+$ff0: 'BrandonGrotesque-Regular'
+$ff1: 'BrandonGrotesque-Bold'
+$ff2: 'BrandonGrotesque-Light'
+$ff3: 'BrandonGrotesque-Medium'
+$ff4: 'Cubano-Regular'
+
+html
+	-webkit-text-size-adjust: 100%
+	font-family: $ff4, sans-serif
+	font-size: 14px
+
+// ============================
+// SOCIAL COLORS
+// ============================
+
+$socCol: (telegram: #61A8DE, viber: #8351B6, whatsapp: #12b54f, twitter: #00aced, pinterest: #cb2028, facebook: #3b5998, googleplus: #d95232)
+
+// @each $name, $color in $socCol
+// 	.soc_#{$name}
+// 		color: $color
+
+@each $name, $color in $socCol
+	.#{$name}
+		&:hover
+			background: $color
+			border-color: $color
+			transition: .3
+
+// ============================
+// MAIN COLORS
+// ============================
+
+$headerC: (url('../image/Home.png')	top/cover)
+$services-identyC: #fafafa	
+$teamC: #111111
+$contactC: #7690c5
+$footerC: #7690c5
